@@ -1,0 +1,66 @@
+import yfinance as yf
+from tkinter import *
+root=Tk()
+root.title("STONKS")
+root.geometry('400x500')
+
+#function definition
+#gets ticker from entry box
+#takes the 1d history of pulled stock
+#result rounds up the closing price of index 0 position(just the price)
+#create label turn entry ticker into string with  string: "current price added"
+#pack to program screen(root)
+
+def myClick():
+    ticker_data= yf.Ticker(e.get())
+    todayData = ticker_data.history(period='1d')
+    result=round(todayData['Close'][0])
+    myLabel= Label(root,text="Current price: " + str(result))
+    myLabel.pack()
+
+#create "Stonks" top label
+l=Label(root, text="STONKS",fg="green")
+
+#put Label on screen
+l.pack()
+
+#create entry box for stock ticker
+e = Entry(root)
+
+#put entry box on screen
+e.pack()
+
+#create button assign size/text/command
+b=Button(root,text="pull data",padx=20,pady=20,bg="orange",command=myClick)
+
+#put button in root
+b.pack()
+
+
+#-------------------------------------------------------------------------------------------------------
+                                #other useful yfinance code not used in this program yet
+
+
+#define the ticker symbol
+#ticker_symbol = input("enter ticker symbol: ")
+
+#get data on the ticker symbol
+#ticker_data = yf.Ticker(ticker_symbol)
+
+#pull earnings dates
+#print(ticker_data.calendar)
+
+#get historical prices for this ticker
+#tickerDf = ticker_data.history(period='1d', start='2000-1-1', end='2021-1-31')
+#print(tickerDf)
+
+#pulls info of company zipcode employee count logo etc
+#print(ticker_data.info)
+
+#get reccomendations data for ticker
+#print(ticker_data.recommendations)
+
+
+
+
+root.mainloop()
