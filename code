@@ -13,10 +13,10 @@ root.geometry('400x500')
 
 def myClick():
     ticker_data= yf.Ticker(e.get())
-    todayData = ticker_data.history(period='1d')
-    result=round(todayData['Close'][0])
-    myLabel= Label(root,text="Current price: " + str(result))
+    todayData = ticker_data.info['regularMarketPrice']
+    myLabel= Label(root,text="Current price of " + e.get() + " is: $" + str(todayData))
     myLabel.pack()
+
 
 #create "Stonks" top label
 l=Label(root, text="STONKS",fg="green")
