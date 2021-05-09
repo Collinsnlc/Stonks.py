@@ -1,8 +1,15 @@
 import yfinance as yf
 from tkinter import *
+from PIL import Image, ImageTk
+import urllib.request
+import io
+
 root=Tk()
 root.title("STONKS")
 root.geometry('400x500')
+
+
+
 
 #function definition
 #gets ticker from entry box
@@ -11,11 +18,19 @@ root.geometry('400x500')
 #create label turn entry ticker into string with  string: "current price added"
 #pack to program screen(root)
 
+
 def myClick():
     ticker_data= yf.Ticker(e.get())
     todayData = ticker_data.info['regularMarketPrice']
     myLabel= Label(root,text="Current price of " + e.get() + " is: $" + str(todayData))
     myLabel.pack()
+    todayyield = "{:.2%}". format(ticker_data.info['dividendYield'])
+    myLabely = Label(root, text="Current yield is: " + str(todayyield))
+    myLabely.pack()
+
+
+#----------------------------------------------------------------------------------------------------
+
 
 
 #create "Stonks" top label
